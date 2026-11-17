@@ -7,7 +7,7 @@ import { upload } from '../../middlewares/upload.middleware';
 import { uploadImage } from '../../lib/cloudinary';
 import { isCloudinaryConfigured } from '../../config/env';
 import { ApiError } from '../../utils/api-error';
-import { UPLOADS_DIR } from '../../app';
+import { UPLOADS_DIR } from '../../create-app';
 
 export const uploadRoutes = Router();
 
