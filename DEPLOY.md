@@ -170,22 +170,27 @@ npx tsx prisma/seed.ts     # popula o banco de produção com o catálogo
 > `images as string[]` (necessário no SQLite). Com `String[]` no Postgres esses casts
 > viram redundantes, mas não quebram.
 
-### Passo 3 — Deploy da API no Render
+### Passo 3 — Deploy da API no Render (banco = Neon)
 
-1. Render → **New** → **Web Service** → conecte o repositório do GitHub.
-2. Configure:
+O repositório já tem `render.yaml` apontando a API para o **Neon** (não usa Postgres do Render).
+
+1. Crie o banco no Neon (passo 1) e copie a connection string.
+2. Render → **New** → **Blueprint** → conecte `EdersonProgramador/barucshopping` (usa `render.yaml`).
+3. Quando pedir `DATABASE_URL`, cole a URI do Neon (`...?sslmode=require`).
+4. JWT secrets são gerados automaticamente pelo Blueprint.
+5. Deploy. Anote a URL (ex.: `https://baruc-shopping-api.onrender.com`).
+6. Teste: `https://sua-api.onrender.com/health` → `{"status":"ok"}`.
+
+Config manual (sem Blueprint):
 
 | Campo | Valor |
 |---|---|
 | **Root Directory** | `server` |
 | **Runtime** | Node |
 | **Build Command** | `npm install && npx prisma generate && npm run build` |
-| **Start Command** | `npx prisma migrate deploy && npm start` |
+| **Start Command** | `npm start` |
+| **Pre-Deploy** | `npx prisma migrate deploy` |
 | **Instance Type** | Free |
-
-3. Em **Environment**, adicione todas as variáveis da seção 2.1.
-4. Deploy. Anote a URL gerada (ex.: `https://baruc-shopping-api.onrender.com`).
-5. Teste: acesse `https://sua-api.onrender.com/health` → deve retornar `{"status":"ok"}`.
 
 > ⏰ O plano free do Render **hiberna após 15 min** de inatividade. A primeira
 > requisição depois disso demora ~50s. Normal para portfólio — mencione no README

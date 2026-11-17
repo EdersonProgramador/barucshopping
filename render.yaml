@@ -1,11 +1,6 @@
-# Baruc Shopping — Render Blueprint (API + Postgres)
+# Baruc Shopping — Render Blueprint (API)
+# Database: Neon Postgres (set DATABASE_URL in the Render dashboard)
 # Dashboard: New → Blueprint → connect EdersonProgramador/barucshopping
-
-databases:
-  - name: baruc-shopping-db
-    plan: free
-    databaseName: barucshopping
-    user: baruc
 
 services:
   - type: web
@@ -24,10 +19,9 @@ services:
         value: production
       - key: CLIENT_URL
         value: https://barucshopping-lqeb.vercel.app
+      # Paste the Neon connection string (Dashboard → Connection string → URI + ?sslmode=require)
       - key: DATABASE_URL
-        fromDatabase:
-          name: baruc-shopping-db
-          property: connectionString
+        sync: false
       - key: JWT_ACCESS_SECRET
         generateValue: true
       - key: JWT_REFRESH_SECRET
