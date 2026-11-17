@@ -42,7 +42,7 @@ export default function RegisterPage() {
     try {
       const session = await authService.register(values);
       setSession(session);
-      toast.success('Conta criada com sucesso! 🎉', 'Boas-vindas à ShopSphere.');
+      toast.success('Conta criada com sucesso! 🎉', 'Boas-vindas à Baruc Shopping.');
       router.push('/');
     } catch (error) {
       toast.error(getApiErrorMessage(error));

@@ -9,7 +9,7 @@ if (isCloudinaryConfigured) {
   });
 }
 
-export function uploadImage(buffer: Buffer, folder = 'shopsphere'): Promise<string> {
+export function uploadImage(buffer: Buffer, folder = 'baruc-shopping'): Promise<string> {
   return new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(
       { folder, resource_type: 'image', transformation: [{ quality: 'auto', fetch_format: 'auto' }] },

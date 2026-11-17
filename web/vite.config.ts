@@ -14,13 +14,23 @@ export default defineConfig({
     open: false,
   },
   build: {
-    // Split heavy vendors into their own cacheable chunks
+    target: 'es2020',
+    cssCodeSplit: true,
+    modulePreload: { polyfill: false },
     rollupOptions: {
       output: {
-        manualChunks: {
-          react: ['react', 'react-dom', 'react-router-dom'],
-          charts: ['recharts'],
-          motion: ['framer-motion'],
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return;
+          if (id.includes('three') || id.includes('@react-three')) return 'three';
+          if (id.includes('recharts') || id.includes('d3-')) return 'charts';
+          if (id.includes('gsap')) return 'gsap';
+          if (id.includes('framer-motion')) return 'motion';
+          if (id.includes('react-dom') || id.includes('react-router') || id.includes('/react/')) {
+            return 'react';
+          }
+          if (id.includes('@tanstack') || id.includes('axios') || id.includes('zustand')) {
+            return 'data';
+          }
         },
       },
     },

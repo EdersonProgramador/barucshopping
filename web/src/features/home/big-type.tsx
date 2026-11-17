@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '@/lib/gsap';
 
-const words = ['Just Move', 'ShopSphere', 'Sem Limites', 'Desde 2026'];
+const words = ['Baruc', 'Shopping', 'Premium', 'Desde 2026'];
 
 /** Awwwards-style giant typography strip driven by scroll position. */
 export function BigType() {

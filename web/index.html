@@ -3,37 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ShopSphere — Descubra o novo em cada compra</title>
+    <title>Baruc Shopping — Seu shopping online</title>
 
     <meta
       name="description"
-      content="E-commerce moderno com tecnologia, moda, casa e muito mais. Frete simulado, cupons e as melhores ofertas."
+      content="Baruc Shopping — praticidade, confiança e ofertas. Sua experiência premium começa aqui."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="ShopSphere" />
-    <meta property="og:title" content="ShopSphere — Descubra o novo em cada compra" />
+    <meta property="og:site_name" content="Baruc Shopping" />
+    <meta property="og:title" content="Baruc Shopping — Seu shopping online" />
     <meta
       property="og:description"
-      content="E-commerce moderno com as melhores ofertas em tecnologia, moda e casa."
+      content="Praticidade, confiança e ofertas para você. E-commerce premium Baruc Shopping."
     />
-    <link rel="icon" href="/public/logo-pequena.png" />
+    <link rel="icon" type="image/svg+xml" href="/logo-baruc.svg" />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap"
+      />
+    </noscript>
     <script>
-      // Apply the persisted theme before first paint to avoid a flash
+      // Brand default: dark. Only skip dark class for an explicit light preference.
       (function () {
         try {
-          var stored = localStorage.getItem('shopsphere:theme');
-          var dark =
-            stored === 'dark' ||
-            ((stored === 'system' || !stored) &&
-              window.matchMedia('(prefers-color-scheme: dark)').matches);
-          if (dark) document.documentElement.classList.add('dark');
-        } catch (e) {}
+          var stored = localStorage.getItem('baruc:theme');
+          if (stored !== 'light') document.documentElement.classList.add('dark');
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
       })();
     </script>
   </head>

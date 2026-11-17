@@ -82,7 +82,7 @@ export function Footer() {
           <Magnetic>
             <Link
               href="/products"
-              className="group inline-flex items-center gap-2 rounded-full gradient-brand px-8 py-4 text-sm font-bold uppercase tracking-wide text-white shadow-glow transition-transform active:scale-[0.98]"
+              className="group inline-flex items-center gap-2 rounded-full gradient-brand px-8 py-4 text-sm font-bold uppercase tracking-wide text-navy-950 shadow-glow transition-transform active:scale-[0.98]"
             >
               Explorar a loja
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -96,7 +96,8 @@ export function Footer() {
         <div className="space-y-5">
           <Logo />
           <p className="max-w-xs text-sm text-muted-foreground">
-            Equipamento e estilo para quem corre atrás. Descubra o novo em cada compra.
+            Praticidade, confiança e ofertas para você. Sua experiência premium começa na Baruc
+            Shopping.
           </p>
           <div className="flex gap-2">
             {socials.map(({ icon: Icon, label, href }) => (
@@ -168,7 +169,7 @@ export function Footer() {
               type="submit"
               disabled={sending}
               aria-label="Assinar newsletter"
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl gradient-brand text-white shadow-soft transition-all hover:shadow-glow disabled:opacity-50"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl gradient-brand text-navy-950 shadow-soft transition-all hover:shadow-glow disabled:opacity-50"
             >
               <Send className="h-4 w-4" />
             </button>
@@ -197,16 +198,16 @@ export function Footer() {
       {/* Giant wordmark: letters rise one by one as the footer enters */}
       <div aria-hidden className="container overflow-hidden pb-2 pt-8">
         <SplitReveal
-          text="SHOPSPHERE"
+          text="BARUC SHOPPING"
           by="chars"
           stagger={0.05}
-          className="block select-none text-center font-heading text-[12.5vw] uppercase leading-none text-foreground/10"
+          className="block select-none text-center font-heading text-[10vw] uppercase leading-none text-foreground/10"
         />
       </div>
 
       <div className="border-t border-border">
         <div className="container flex flex-col items-center justify-between gap-3 py-6 text-xs text-muted-foreground sm:flex-row">
-          <p>© {new Date().getFullYear()} ShopSphere. Projeto de portfólio — pagamentos simulados.</p>
+          <p>© {new Date().getFullYear()} Baruc Shopping. Todos os direitos reservados.</p>
           <div className="flex items-center gap-4">
             <p>Feito com React 19, Express e Prisma</p>
             <Magnetic strength={0.5}>

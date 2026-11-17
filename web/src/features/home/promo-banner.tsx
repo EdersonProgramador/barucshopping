@@ -6,6 +6,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { SplitReveal } from '@/components/common/split-reveal';
 import { Magnetic } from '@/components/common/magnetic';
 import { Reveal, RevealItem } from '@/components/common/reveal';
+import { LazyVideo } from '@/components/common/lazy-video';
 
 const BG = '/bg-promo.mp4';
 
@@ -53,7 +54,7 @@ function MemberCard({ name }: { name: string }) {
         {/* Holographic glow */}
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-gradient-to-br from-brand-500/50 via-violet-500/35 to-fuchsia-500/40 blur-3xl"
+          className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-gradient-to-br from-brand-400/50 via-brand-600/30 to-accent-blue/25 blur-3xl"
         />
         <div
           aria-hidden
@@ -63,7 +64,7 @@ function MemberCard({ name }: { name: string }) {
         <div className="relative flex h-full flex-col justify-between">
           <div className="flex items-start justify-between">
             <p className="font-heading text-lg uppercase tracking-widest">
-              Sphere<span className="text-brand-400">·</span>Members
+              Baruc<span className="text-brand-400">·</span>Members
             </p>
             <span className="flex items-center gap-1 rounded-full bg-amber-400/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-amber-300">
               <Crown className="h-3 w-3" aria-hidden /> Gold
@@ -98,16 +99,10 @@ export function PromoBanner() {
 
   return (
     <section className="relative overflow-hidden bg-zinc-950 text-white">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
+      <LazyVideo
+        src={BG}
         className="absolute inset-0 h-full w-full object-cover opacity-40"
-      >
-        <source src={BG} type="video/mp4" />
-      </video>
+      />
       <div
         className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-black/30"
         aria-hidden
@@ -118,7 +113,7 @@ export function PromoBanner() {
           <Reveal>
             <p className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.35em] text-brand-400">
               <span className="h-px w-8 bg-brand-400" aria-hidden />
-              Sphere Members
+              Baruc Members
             </p>
           </Reveal>
 

@@ -4,23 +4,26 @@
 
 @layer base {
   :root {
-    --font-sans: 'Inter', system-ui, sans-serif;
-    --font-display: 'Sora', system-ui, sans-serif;
-    --background: 0 0% 100%;
-    --foreground: 240 10% 8%;
+    --font-sans: 'Montserrat', system-ui, sans-serif;
+    --font-display: 'Montserrat', system-ui, sans-serif;
+    --font-heading: 'Montserrat', system-ui, sans-serif;
+    /* Light surfaces with navy ink + gold accents */
+    --background: 220 33% 97%;
+    --foreground: 222 47% 9%;
     --card: 0 0% 100%;
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 42%;
-    --border: 240 6% 90%;
+    --muted: 220 24% 94%;
+    --muted-foreground: 220 12% 40%;
+    --border: 220 18% 86%;
   }
 
   .dark {
-    --background: 240 10% 4%;
-    --foreground: 0 0% 98%;
-    --card: 240 8% 7%;
-    --muted: 240 6% 11%;
-    --muted-foreground: 240 5% 66%;
-    --border: 240 6% 15%;
+    /* Deep navy from brand arts */
+    --background: 222 55% 6%;
+    --foreground: 210 40% 98%;
+    --card: 222 48% 9%;
+    --muted: 222 40% 12%;
+    --muted-foreground: 215 16% 70%;
+    --border: 222 28% 18%;
   }
 
   * {
@@ -36,13 +39,23 @@
     text-rendering: optimizeLegibility;
   }
 
-  ::selection {
-    @apply bg-brand-500/25;
+  .font-heading {
+    letter-spacing: 0.06em;
+    font-weight: 800;
+    text-transform: uppercase;
   }
 
-  /* Accessible focus ring everywhere */
+  .font-display {
+    letter-spacing: 0.04em;
+    font-weight: 700;
+  }
+
+  ::selection {
+    @apply bg-brand-400/30 text-foreground;
+  }
+
   :focus-visible {
-    @apply outline-none ring-2 ring-brand-500 ring-offset-2 ring-offset-background;
+    @apply outline-none ring-2 ring-brand-400 ring-offset-2 ring-offset-background;
   }
 
   ::-webkit-scrollbar {
@@ -65,25 +78,32 @@
     @apply border border-border/60 bg-background/70 backdrop-blur-xl;
   }
 
+  /* Metallic gold wordmark / emphasis */
   .gradient-text {
-    @apply bg-gradient-to-r from-brand-500 via-violet-500 to-fuchsia-500 bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #f5e6a8 0%, #d4af37 42%, #a8841c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .gradient-brand {
-    @apply bg-gradient-to-r from-brand-600 to-violet-600;
+    background-image: linear-gradient(135deg, #f0d978 0%, #d4af37 48%, #a8841c 100%);
+  }
+
+  .text-shopping {
+    color: #2f6bff;
   }
 
   .text-balance {
     text-wrap: balance;
   }
 
-  /* Subtle film grain over the whole app (SVG turbulence noise) */
   .grain {
     position: fixed;
     inset: 0;
     z-index: 70;
     pointer-events: none;
-    opacity: 0.05;
+    opacity: 0.04;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size: 180px 180px;
   }

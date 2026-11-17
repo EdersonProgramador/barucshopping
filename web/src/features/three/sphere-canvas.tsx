@@ -21,7 +21,7 @@ function Scene() {
         <mesh>
           <sphereGeometry args={[1.35, 64, 64]} />
           <MeshDistortMaterial
-            color="#6366f1"
+            color="#D4AF37"
             emissive="#4338ca"
             emissiveIntensity={0.3}
             distort={0.42}

@@ -1,4 +1,4 @@
-﻿import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from '@/lib/navigation';
 import { useCartStore } from '@/stores/cart-store';
 import { AuthGuard } from '@/components/common/auth-guard';

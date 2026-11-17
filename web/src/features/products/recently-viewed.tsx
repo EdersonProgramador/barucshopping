@@ -1,4 +1,4 @@
-﻿import Image from '@/components/common/image';
+import Image from '@/components/common/image';
 import Link from '@/components/common/link';
 import { useEffect, useState } from 'react';
 import { useRecentlyViewedStore } from '@/stores/recently-viewed-store';

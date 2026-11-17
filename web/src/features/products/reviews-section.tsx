@@ -58,7 +58,7 @@ export function ReviewsSection({ productId }: { productId: string }) {
     mutationFn: () =>
       productService.createReview({ productId, rating, title: title || undefined, comment, images }),
     onSuccess: () => {
-      toast.success('Avaliação publicada! ⭐', 'Você ganhou 50 pontos Sphere.');
+      toast.success('Avaliação publicada! ⭐', 'Você ganhou 50 pontos Baruc.');
       setTitle('');
       setComment('');
       setImages([]);
@@ -162,7 +162,7 @@ export function ReviewsSection({ productId }: { productId: string }) {
           {data?.data.map((review) => (
             <article key={review.id} className="rounded-2xl border border-border bg-card p-5 shadow-soft">
               <div className="mb-3 flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full gradient-brand text-xs font-bold text-white">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full gradient-brand text-xs font-bold text-navy-950">
                   {getInitials(review.user.name)}
                 </span>
                 <div className="flex-1">

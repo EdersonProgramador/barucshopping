@@ -18,12 +18,10 @@ import { useCartStore, selectCartCount } from '@/stores/cart-store';
 import { useUiStore } from '@/stores/ui-store';
 import { ThemeToggle } from './theme-toggle';
 import { NotificationBell } from './notification-bell';
+import { Logo } from './logo';
 import { Dropdown, DropdownItem } from '@/components/ui/dropdown';
 import { Drawer } from '@/components/ui/drawer';
 import { useRouter } from '@/lib/navigation';
-
-// 1. No Vite, você importa a imagem direto da pasta public referenciando a raiz
-import logoUrl from '/logo-inteira.png';
 
 const links = [
   { href: '/', label: 'Início' },
@@ -54,14 +52,7 @@ export function Navbar() {
     >
       <div className="container flex h-16 items-center justify-between gap-4">
         <div className="flex items-center gap-8">
-          {/* 2. CORREÇÃO AQUI: Usando a tag <img> normal do HTML com o src correto */}
-          <Link href="/" className="flex items-center">
-            <img
-              src={logoUrl}
-              alt="ShopSphere Logo"
-              className="h-12 w-auto object-contain" // Ajuste a altura (h-10) como preferir
-            />
-          </Link>
+          <Logo />
 
           <nav aria-label="Navegação principal" className="hidden items-center gap-1 md:flex">
             {links.map((link) => (
@@ -113,7 +104,7 @@ export function Navbar() {
           >
             <ShoppingBag className="h-5 w-5" />
             {cartCount > 0 && (
-              <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full gradient-brand px-1 text-[10px] font-bold text-white">
+              <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full gradient-brand px-1 text-[10px] font-bold text-navy-950">
                 {cartCount > 9 ? '9+' : cartCount}
               </span>
             )}
@@ -122,7 +113,7 @@ export function Navbar() {
           {user ? (
             <Dropdown
               trigger={
-                <span className="ml-1 flex h-9 w-9 items-center justify-center rounded-full gradient-brand text-xs font-bold text-white ring-2 ring-border">
+                <span className="ml-1 flex h-9 w-9 items-center justify-center rounded-full gradient-brand text-xs font-bold text-navy-950 ring-2 ring-border">
                   {getInitials(user.name)}
                 </span>
               }
@@ -154,7 +145,7 @@ export function Navbar() {
           ) : (
             <Link
               href="/login"
-              className="ml-1 hidden h-10 items-center rounded-xl gradient-brand px-4 text-sm font-medium text-white shadow-soft transition-all hover:shadow-glow sm:flex"
+              className="ml-1 hidden h-10 items-center rounded-xl gradient-brand px-4 text-sm font-medium text-navy-950 shadow-soft transition-all hover:shadow-glow sm:flex"
             >
               Entrar
             </Link>

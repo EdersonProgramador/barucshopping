@@ -15,7 +15,7 @@ interface ThemeContextValue {
   setTheme: (theme: Theme) => void;
 }
 
-const STORAGE_KEY = 'shopsphere:theme';
+const STORAGE_KEY = 'baruc:theme';
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
@@ -26,7 +26,9 @@ function getSystemTheme(): 'light' | 'dark' {
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
-    return stored === 'light' || stored === 'dark' ? stored : 'system';
+    // Brand default is dark; only honor an explicit light preference
+    if (stored === 'light' || stored === 'dark') return stored;
+    return 'dark';
   });
   const [systemTheme, setSystemTheme] = useState<'light' | 'dark'>(getSystemTheme);
 

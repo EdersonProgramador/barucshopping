@@ -1,6 +1,6 @@
 <div align="center">
 
-# ✨ ShopSphere
+# ✨ Baruc Shopping
 
 **E-commerce Full Stack de artigos esportivos — React 19 + Express + Prisma**
 
@@ -14,7 +14,7 @@ SPA com animações GSAP/Framer Motion/Three.js · API REST em camadas · SQLite
 
 ## 📖 Visão geral
 
-O **ShopSphere** é uma loja de artigos esportivos completa: vitrine cinematográfica com vídeo e cena 3D, catálogo com 60+ produtos em 11 esportes, carrinho persistente, checkout multi-etapas com pagamento simulado, área do cliente, e painel administrativo com dashboard, CRUD de produtos com upload e visão 360° de cada cliente.
+O **Baruc Shopping** é uma loja de artigos esportivos completa: vitrine cinematográfica com vídeo e cena 3D, catálogo com 60+ produtos em 11 esportes, carrinho persistente, checkout multi-etapas com pagamento simulado, área do cliente, e painel administrativo com dashboard, CRUD de produtos com upload e visão 360° de cada cliente.
 
 **Monorepo com dois apps independentes:**
 
@@ -96,7 +96,7 @@ Decisões importantes:
 - **Preços em centavos (`Int`)** — sem erro de ponto flutuante; formatação com `Intl.NumberFormat('pt-BR')` só na borda.
 - **SQLite** para experiência clone-and-run. Como SQLite não tem enums nem arrays: campos enum-like são `String` validados por Zod na borda (unions em `src/types.ts`), e `images`/`tags` são `Json`. Para Postgres em produção: troque o provider, converta `Json → String[]` e strings → `enum`.
 - **Denormalizações conscientes**: `Product.rating/reviewCount` (recalculados em transação a cada review) e `Product.sold` evitam agregações em toda listagem. `Order.shippingAddress` é snapshot `Json` — editar o endereço depois não reescreve a história.
-- **Seed** (`prisma/seed.ts`): 11 categorias, ~62 produtos da linha fictícia "Sphere", 7 usuários, 3 cupons, reviews com agregados consistentes e 48 pedidos espalhados por 6 meses para alimentar os gráficos do dashboard.
+- **Seed** (`prisma/seed.ts`): 11 categorias, ~62 produtos da linha fictícia "Baruc", 7 usuários, 3 cupons, reviews com agregados consistentes e 48 pedidos espalhados por 6 meses para alimentar os gráficos do dashboard.
 
 ### Endpoints principais
 
@@ -147,7 +147,7 @@ O app nasceu em Next.js e migrou para React puro trocando **apenas imports**, gr
 | Motor | Onde | Por quê |
 |---|---|---|
 | **Framer Motion** | micro: reveals de cards/seções (`<Reveal>`), toasts, modais/drawers, transição de página, barra de scroll, navbar que se esconde ao rolar | API declarativa por componente |
-| **GSAP + ScrollTrigger** | macro: parallax do hero (scrub), tipografia gigante horizontal, reveals em cascata e contadores da seção Sphere Lab | controle fino de timeline atrelada ao scroll |
+| **GSAP + ScrollTrigger** | macro: parallax do hero (scrub), tipografia gigante horizontal, reveals em cascata e contadores da seção Baruc Lab | controle fino de timeline atrelada ao scroll |
 | **Three.js (R3F + drei)** | assinatura visual: orb metálico distorcido que flutua e segue o mouse, com partículas | identidade — a "esfera" da marca |
 
 `prefers-reduced-motion` é respeitado no marquee; `useGSAP` faz cleanup automático de ScrollTriggers na troca de rota.
@@ -194,9 +194,9 @@ npm run dev          # API :3333 + Web :3000
 
 | Credencial | Valor |
 |---|---|
-| Admin | `admin@shopsphere.dev` / `Admin@123` |
+| Admin | `admin@barucshopping.dev` / `Admin@123` |
 | Cliente | `ana@example.com` / `Cliente@123` |
-| Cupons | `BEMVINDO10` (10%) · `SPHERE20` (20% ≥ R$200) · `VIP50` (R$50 ≥ R$300) |
+| Cupons | `BEMVINDO10` (10%) · `BARUC20` (20% ≥ R$200) · `VIP50` (R$50 ≥ R$300) |
 | Cartão teste | 16 dígitos quaisquer aprova · final `0000` recusa |
 
 **Scripts úteis:** `npm run dev:api` · `npm run dev:web` · `npm run build` · `npx prisma studio --prefix server`

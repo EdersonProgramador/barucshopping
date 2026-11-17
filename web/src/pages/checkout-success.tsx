@@ -1,5 +1,4 @@
 import { Suspense, useEffect } from 'react';
-import confetti from 'canvas-confetti';
 import Link from '@/components/common/link';
 import { useSearchParams } from '@/lib/navigation';
 import { useQuery } from '@tanstack/react-query';
@@ -11,8 +10,9 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { AuthGuard } from '@/components/common/auth-guard';
 
 /** Celebration burst: two side cannons + a center pop, brand colored. */
-function fireConfetti() {
-  const colors = ['#6366f1', '#8b5cf6', '#d946ef', '#ffffff'];
+async function fireConfetti() {
+  const { default: confetti } = await import('canvas-confetti');
+  const colors = ['#D4AF37', '#F5E6A8', '#2F6BFF', '#ffffff'];
   confetti({ particleCount: 90, spread: 75, origin: { x: 0.5, y: 0.6 }, colors });
   setTimeout(() => {
     confetti({ particleCount: 50, angle: 60, spread: 55, origin: { x: 0, y: 0.7 }, colors });
@@ -30,7 +30,7 @@ function SuccessContent() {
   });
 
   useEffect(() => {
-    if (order) fireConfetti();
+    if (order) void fireConfetti();
   }, [order]);
 
   return (
@@ -94,7 +94,7 @@ function SuccessContent() {
       <div className="flex flex-col gap-2 sm:flex-row">
         <Link
           href="/account/orders"
-          className="flex h-11 items-center gap-2 rounded-xl gradient-brand px-6 text-sm font-medium text-white shadow-soft transition-all hover:shadow-glow"
+          className="flex h-11 items-center gap-2 rounded-xl gradient-brand px-6 text-sm font-medium text-navy-950 shadow-soft transition-all hover:shadow-glow"
         >
           <Package className="h-4 w-4" /> Acompanhar pedido
         </Link>

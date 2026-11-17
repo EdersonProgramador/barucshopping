@@ -48,7 +48,7 @@ export function Testimonials() {
                 “{testimonial.text}”
               </blockquote>
               <figcaption className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full gradient-brand text-xs font-bold text-white">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full gradient-brand text-xs font-bold text-navy-950">
                   {getInitials(testimonial.name)}
                 </span>
                 <div>

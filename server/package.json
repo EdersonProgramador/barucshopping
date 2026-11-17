@@ -1,8 +1,8 @@
 {
-  "name": "@shopsphere/server",
+  "name": "@baruc/server",
   "version": "1.0.0",
   "private": true,
-  "description": "ShopSphere API — Express + Prisma + PostgreSQL",
+  "description": "Baruc Shopping API — Express + Prisma",
   "main": "dist/server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",

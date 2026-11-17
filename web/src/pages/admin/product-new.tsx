@@ -1,4 +1,4 @@
-﻿import { ProductForm } from '@/features/admin/product-form';
+import { ProductForm } from '@/features/admin/product-form';
 
 export default function NewProductPage() {
   return (

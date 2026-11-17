@@ -1,4 +1,4 @@
-# 🚀 Guia de Deploy — ShopSphere
+# 🚀 Guia de Deploy — Baruc Shopping
 
 Guia completo para colocar o projeto no ar: quais contas criar, quais variáveis de
 ambiente configurar em cada serviço, e o que precisa mudar no código antes.
@@ -96,7 +96,7 @@ O Vite só expõe variáveis com prefixo `VITE_`.
 
 | Variável | Obrigatória | Exemplo | Observação |
 |---|---|---|---|
-| `VITE_API_URL` | ✅ | `https://shopsphere-api.onrender.com/api` | **Precisa terminar em `/api`** |
+| `VITE_API_URL` | ✅ | `https://baruc-shopping-api.onrender.com/api` | **Precisa terminar em `/api`** |
 
 > ⚠️ Erro mais comum: esquecer o `/api` no final. O front monta as rotas como
 > `${VITE_API_URL}/products`, então sem o sufixo tudo dá 404.
@@ -108,7 +108,7 @@ Variáveis que **você adicionará** ao Render junto com o código da seção 6:
 | Variável | Exemplo | Onde obter |
 |---|---|---|
 | `RESEND_API_KEY` | `re_xxxxxxxxxxxxxxxx` | Resend → API Keys → Create |
-| `RESEND_FROM` | `ShopSphere <onboarding@resend.dev>` | Use `onboarding@resend.dev` para testar |
+| `RESEND_FROM` | `Baruc Shopping <onboarding@resend.dev>` | Use `onboarding@resend.dev` para testar |
 
 > No plano grátis sem domínio verificado, o Resend **só envia para o e-mail da sua
 > própria conta**. Para enviar a qualquer destinatário, verifique um domínio em
@@ -184,7 +184,7 @@ npx tsx prisma/seed.ts     # popula o banco de produção com o catálogo
 | **Instance Type** | Free |
 
 3. Em **Environment**, adicione todas as variáveis da seção 2.1.
-4. Deploy. Anote a URL gerada (ex.: `https://shopsphere-api.onrender.com`).
+4. Deploy. Anote a URL gerada (ex.: `https://baruc-shopping-api.onrender.com`).
 5. Teste: acesse `https://sua-api.onrender.com/health` → deve retornar `{"status":"ok"}`.
 
 > ⏰ O plano free do Render **hiberna após 15 min** de inatividade. A primeira
@@ -219,7 +219,7 @@ procura um arquivo nesse caminho). Crie `web/vercel.json`:
 ### Passo 5 — Fechar o círculo do CORS
 
 Volte no Render e ajuste `CLIENT_URL` para a URL real da Vercel
-(ex.: `https://shopsphere.vercel.app`), sem barra no final. O backend usa essa
+(ex.: `https://baruc-shopping.vercel.app`), sem barra no final. O backend usa essa
 variável no CORS (`server/src/app.ts`) — se estiver errada, o navegador bloqueia
 todas as chamadas.
 
@@ -285,7 +285,7 @@ Adicione ao `server/src/config/env.ts`, dentro do `envSchema`:
 
 ```ts
 RESEND_API_KEY: z.string().optional(),
-RESEND_FROM: z.string().default('ShopSphere <onboarding@resend.dev>'),
+RESEND_FROM: z.string().default('Baruc Shopping <onboarding@resend.dev>'),
 ```
 
 E logo abaixo do `isCloudinaryConfigured`:
@@ -323,7 +323,7 @@ Em `server/src/modules/auth/auth.service.ts`, no método `forgotPassword`, subst
 const link = `${env.CLIENT_URL}/reset-password?token=${token}`;
 await sendMail(
   user.email,
-  'Redefinir sua senha — ShopSphere',
+  'Redefinir sua senha — Baruc Shopping',
   `<p>Olá, ${user.name}!</p>
    <p>Clique no botão abaixo para criar uma nova senha. O link expira em 30 minutos.</p>
    <p><a href="${link}" style="background:#6366f1;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;display:inline-block">Redefinir senha</a></p>
@@ -339,7 +339,7 @@ os dois pontos já têm o `console.log` no lugar certo para trocar.
 
 ```
 RESEND_API_KEY=re_xxxxxxxxxxxx
-RESEND_FROM=ShopSphere <onboarding@resend.dev>
+RESEND_FROM=Baruc Shopping <onboarding@resend.dev>
 ```
 
 ---
@@ -347,7 +347,7 @@ RESEND_FROM=ShopSphere <onboarding@resend.dev>
 ## 7. Depois do deploy
 
 1. Acesse `https://seu-site.vercel.app` e confirme que os produtos carregam.
-2. Entre com `admin@shopsphere.dev` / `Admin@123` e **troque a senha do admin
+2. Entre com `admin@barucshopping.dev` / `Admin@123` e **troque a senha do admin
    imediatamente** (os dados vêm do seed público).
 3. Teste o fluxo completo: cadastro → produto → carrinho → cupom → checkout.
 4. Suba uma imagem pelo admin para validar o Cloudinary.

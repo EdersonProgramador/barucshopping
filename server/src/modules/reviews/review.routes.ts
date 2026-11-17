@@ -106,7 +106,7 @@ reviewRoutes.post('/', requireAuth, validate({ body: createSchema }), async (req
         userId,
         type: 'POINTS',
         title: 'Avaliação publicada ⭐',
-        body: `Obrigado! Você ganhou ${POINTS.REVIEW} pontos Sphere.`,
+        body: `Obrigado! Você ganhou ${POINTS.REVIEW} pontos Baruc.`,
         link: `/products/${product.slug}`,
       });
 

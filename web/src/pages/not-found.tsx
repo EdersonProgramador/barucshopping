@@ -14,7 +14,7 @@ export default function NotFound() {
       </div>
       <Link
         href="/products"
-        className="flex h-11 items-center gap-2 rounded-xl gradient-brand px-6 text-sm font-medium text-white shadow-soft transition-all hover:shadow-glow"
+        className="flex h-11 items-center gap-2 rounded-xl gradient-brand px-6 text-sm font-medium text-navy-950 shadow-soft transition-all hover:shadow-glow"
       >
         <Compass className="h-4 w-4" /> Explorar produtos
       </Link>

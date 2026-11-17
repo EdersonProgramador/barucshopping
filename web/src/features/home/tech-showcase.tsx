@@ -11,7 +11,7 @@ const features = [
   { icon: Zap, title: 'NitroFoam™', text: '85% de retorno de energia a cada passada.' },
   { icon: Feather, title: 'AeroKnit', text: 'Cabedal de 98g que veste como uma segunda pele.' },
   { icon: Gauge, title: 'CarbonDrive', text: 'Placa de carbono full-length para propulsão máxima.' },
-  { icon: Recycle, title: 'ReSphere', text: '72% de materiais reciclados em cada par.' },
+  { icon: Recycle, title: 'ReBaruc', text: '72% de materiais reciclados em cada par.' },
 ];
 
 const stats = [
@@ -66,7 +66,7 @@ export function TechShowcase() {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <p data-reveal className="mb-3 text-xs font-bold uppercase tracking-[0.35em] text-brand-400">
-              Sphere Lab
+              Baruc Lab
             </p>
             <h2
               id="tech-heading"
@@ -78,7 +78,7 @@ export function TechShowcase() {
               em <span className="text-brand-400">movimento</span>
             </h2>
             <p data-reveal className="mt-5 max-w-md text-white/70">
-              Cada produto Sphere nasce no nosso laboratório de performance — testado por atletas,
+              Cada produto Baruc nasce no nosso laboratório de performance — testado por atletas,
               aprovado pela ciência.
             </p>
 
@@ -98,7 +98,7 @@ export function TechShowcase() {
               <Suspense
                 fallback={
                   <div className="flex h-full items-center justify-center">
-                    <div className="h-48 w-48 animate-pulse rounded-full bg-gradient-to-br from-brand-500/40 to-fuchsia-500/30 blur-2xl" />
+                    <div className="h-48 w-48 animate-pulse rounded-full bg-gradient-to-br from-brand-400/45 to-accent-blue/25 blur-2xl" />
                   </div>
                 }
               >

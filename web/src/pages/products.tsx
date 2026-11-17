@@ -4,7 +4,7 @@ import { Catalog } from '@/features/products/catalog';
 export default function ProductsPage() {
   usePageMeta(
     'Produtos',
-    'Explore o catálogo completo da ShopSphere: eletrônicos, moda, casa, beleza e muito mais com filtros inteligentes.'
+    'Explore o catálogo completo da Baruc Shopping: eletrônicos, moda, casa, beleza e muito mais com filtros inteligentes.'
   );
 
   return <Catalog />;

@@ -1,4 +1,4 @@
-﻿import { useEffect, type ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import { usePathname, useRouter } from '@/lib/navigation';
 import { Loader2 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';

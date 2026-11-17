@@ -87,7 +87,7 @@ export const useCartStore = create<CartState>()(
       setCoupon: (coupon) => set({ coupon }),
       clear: () => set({ items: [], coupon: null }),
     }),
-    { name: 'shopsphere:cart' }
+    { name: 'baruc:cart' }
   )
 );
 

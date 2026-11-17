@@ -28,9 +28,9 @@ export function Newsletter() {
   return (
     <section className="container py-20">
       <div className="relative overflow-hidden rounded-[2rem] bg-zinc-950 px-6 py-10 text-white shadow-2xl sm:px-10 lg:px-14">
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-500/30 via-purple-500/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-400/25 via-accent-blue/15 to-transparent" />
         <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-400/30 blur-3xl" />
-        <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-fuchsia-500/20 blur-3xl" />
+        <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-accent-magenta/20 blur-3xl" />
 
         <div className="relative grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <div>

@@ -34,10 +34,10 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 28, filter: 'blur(8px)' }}
-      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.55, delay: (index % 4) * 0.09, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.4, delay: (index % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}
       className="group"
     >
       <Link href={`/products/${product.slug}`} className="block" aria-label={product.title}>

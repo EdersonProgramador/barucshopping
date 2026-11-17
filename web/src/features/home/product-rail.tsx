@@ -1,4 +1,4 @@
-﻿import { useProducts } from '@/hooks/use-products';
+import { useProducts } from '@/hooks/use-products';
 import type { ProductFilters } from '@/services/product.service';
 import { ProductGrid } from '@/features/products/product-grid';
 import { ProductGridSkeleton } from '@/components/ui/skeleton';

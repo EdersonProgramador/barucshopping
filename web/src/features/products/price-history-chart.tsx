@@ -6,7 +6,7 @@ import { productService } from '@/services/product.service';
 import { cn, formatPrice } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
 
-const BRAND = '#6366f1';
+const BRAND = '#D4AF37';
 const RANGES = [
   { days: 30, label: '30 dias' },
   { days: 90, label: '90 dias' },

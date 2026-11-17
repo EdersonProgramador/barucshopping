@@ -75,7 +75,7 @@ export default function AdminUsersPage() {
                 >
                   <td className="p-3">
                     <div className="flex items-center gap-3">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full gradient-brand text-xs font-bold text-white">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full gradient-brand text-xs font-bold text-navy-950">
                         {getInitials(user.name)}
                       </span>
                       <div className="min-w-0">

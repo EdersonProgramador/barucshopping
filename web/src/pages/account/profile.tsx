@@ -48,7 +48,7 @@ export default function ProfilePage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
-        <span className="flex h-16 w-16 items-center justify-center rounded-2xl gradient-brand text-xl font-bold text-white shadow-glow">
+        <span className="flex h-16 w-16 items-center justify-center rounded-2xl gradient-brand text-xl font-bold text-navy-950 shadow-glow">
           {getInitials(user.name)}
         </span>
         <div>

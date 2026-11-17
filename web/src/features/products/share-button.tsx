@@ -15,7 +15,7 @@ export function ShareButton({ title }: { title: string }) {
   }
 
   function shareWhatsApp() {
-    const text = encodeURIComponent(`Olha o que eu achei na ShopSphere: ${title}\n${url}`);
+    const text = encodeURIComponent(`Olha o que eu achei na Baruc Shopping: ${title}\n${url}`);
     window.open(`https://wa.me/?text=${text}`, '_blank', 'noopener');
   }
 

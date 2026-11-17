@@ -21,6 +21,6 @@ export const useRecentlyViewedStore = create<RecentlyViewedState>()(
           ),
         })),
     }),
-    { name: 'shopsphere:recently-viewed' }
+    { name: 'baruc:recently-viewed' }
   )
 );

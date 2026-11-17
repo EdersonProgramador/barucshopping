@@ -48,7 +48,7 @@ export const authService = {
         notifications: {
           create: {
             type: 'POINTS',
-            title: 'Boas-vindas à Sphere! 🎉',
+            title: 'Boas-vindas à Baruc Shopping! 🎉',
             body: `Você começou com ${POINTS.SIGNUP} pontos. Acompanhe em Recompensas.`,
             link: '/account/rewards',
           },

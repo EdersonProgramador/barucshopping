@@ -39,7 +39,7 @@ export function Pagination({ page, totalPages, onPageChange }: PaginationProps) 
             aria-current={p === page ? 'page' : undefined}
             className={cn(
               'h-10 min-w-10 rounded-xl px-3 text-sm font-medium transition-colors',
-              p === page ? 'gradient-brand text-white shadow-soft' : 'border border-border hover:bg-muted'
+              p === page ? 'gradient-brand text-navy-950 shadow-soft' : 'border border-border hover:bg-muted'
             )}
           >
             {p}

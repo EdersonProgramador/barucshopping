@@ -41,7 +41,7 @@ export function CustomerDetailDrawer({ userId, onClose }: CustomerDetailDrawerPr
           <>
             {/* Profile */}
             <div className="flex items-center gap-4 rounded-2xl border border-border bg-card p-4">
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl gradient-brand text-lg font-bold text-white">
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl gradient-brand text-lg font-bold text-navy-950">
                 {getInitials(customer.name)}
               </span>
               <div className="min-w-0 flex-1">

@@ -126,7 +126,7 @@ export function CheckoutFlow() {
                   aria-current={active ? 'step' : undefined}
                   className={cn(
                     'flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition-colors',
-                    active && 'gradient-brand text-white shadow-soft',
+                    active && 'gradient-brand text-navy-950 shadow-soft',
                     done && 'text-brand-600 hover:bg-muted dark:text-brand-400',
                     !active && !done && 'text-muted-foreground'
                   )}
@@ -363,7 +363,7 @@ export function CheckoutFlow() {
                 {product.images[0] && (
                   <Image src={product.images[0]} alt="" fill sizes="56px" className="object-cover" />
                 )}
-                <span className="absolute -right-0 -top-0 flex h-5 min-w-5 items-center justify-center rounded-full gradient-brand px-1 text-[10px] font-bold text-white">
+                <span className="absolute -right-0 -top-0 flex h-5 min-w-5 items-center justify-center rounded-full gradient-brand px-1 text-[10px] font-bold text-navy-950">
                   {quantity}
                 </span>
               </span>

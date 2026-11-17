@@ -26,7 +26,7 @@ export const useAuthStore = create<AuthState>()(
       setHydrated: () => set({ hydrated: true }),
     }),
     {
-      name: 'shopsphere:auth',
+      name: 'baruc:auth',
       partialize: ({ user, accessToken, refreshToken }) => ({ user, accessToken, refreshToken }),
       onRehydrateStorage: () => (state) => state?.setHydrated(),
     }

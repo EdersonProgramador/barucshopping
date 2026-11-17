@@ -1,4 +1,4 @@
-// ShopSphere — database schema
+// Baruc Shopping — database schema
 // Prices are stored in cents (Int) to avoid floating point issues.
 // SQLite keeps the project zero-config; swap the datasource for PostgreSQL in
 // production (enums/String[] variants are noted in the README).
@@ -14,7 +14,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -211,7 +211,7 @@ model Address {
 
 model Order {
   id              String      @id @default(cuid())
-  code            String      @unique // human-friendly, e.g. SS-1A2B3C
+  code            String      @unique // human-friendly, e.g. BS-1A2B3C
   userId          String
   user            User        @relation(fields: [userId], references: [id])
   status          String      @default("PENDING")

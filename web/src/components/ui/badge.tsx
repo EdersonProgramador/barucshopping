@@ -12,7 +12,7 @@ const badgeVariants = cva(
         success: 'bg-emerald-500/12 text-emerald-600 dark:text-emerald-400',
         warning: 'bg-amber-500/15 text-amber-600 dark:text-amber-400',
         danger: 'bg-red-500/12 text-red-600 dark:text-red-400',
-        gradient: 'gradient-brand text-white',
+        gradient: 'gradient-brand text-navy-950',
         outline: 'border border-border text-muted-foreground',
       },
     },

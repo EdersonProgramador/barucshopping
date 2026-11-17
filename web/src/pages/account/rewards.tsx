@@ -58,7 +58,7 @@ export default function RewardsPage() {
               {data.level.label}
             </p>
             <p className="mt-1 text-sm text-white/70">
-              <span className="font-bold text-white">{data.points.toLocaleString('pt-BR')}</span> pontos Sphere
+              <span className="font-bold text-white">{data.points.toLocaleString('pt-BR')}</span> pontos Baruc
             </p>
           </div>
           <span className={cn('flex h-20 w-20 items-center justify-center rounded-full bg-white/5 ring-4', style.ring)}>

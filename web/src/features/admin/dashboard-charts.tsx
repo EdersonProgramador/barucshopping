@@ -1,4 +1,4 @@
-﻿import {
+import {
   Area,
   AreaChart,
   Bar,
@@ -14,7 +14,7 @@ import { formatPrice } from '@/lib/utils';
 import { ORDER_STATUS_LABELS } from '@/features/orders/order-status-badge';
 import type { DashboardData } from '@/types';
 
-const BRAND = '#6366f1';
+const BRAND = '#D4AF37';
 
 interface TooltipPayload {
   value?: number | string;

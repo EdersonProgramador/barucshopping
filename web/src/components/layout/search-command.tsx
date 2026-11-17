@@ -15,13 +15,9 @@ export function SearchCommand() {
   const debounced = useDebounce(term, 350);
   const router = useRouter();
 
-  // Global Ctrl+K / Cmd+K shortcut
+  // Escape closes; Ctrl/Cmd+K is handled by LazyOverlays (mounts this module on demand)
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        setSearchOpen(!useUiStore.getState().searchOpen);
-      }
       if (e.key === 'Escape') setSearchOpen(false);
     };
     document.addEventListener('keydown', handler);

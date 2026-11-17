@@ -1,8 +1,8 @@
 {
-  "name": "shopsphere",
+  "name": "baruc-shopping",
   "version": "1.0.0",
   "private": true,
-  "description": "ShopSphere — E-commerce Full Stack moderno (Next.js 15 + Express + Prisma + PostgreSQL)",
+  "description": "Baruc Shopping — E-commerce Full Stack (React + Express + Prisma)",
   "scripts": {
     "dev": "concurrently -n api,web -c cyan,magenta \"npm run dev --prefix server\" \"npm run dev --prefix web\"",
     "dev:api": "npm run dev --prefix server",
@@ -21,7 +21,11 @@
     "lint-staged": "^15.2.10"
   },
   "lint-staged": {
-    "server/**/*.{ts,js}": ["prettier --write"],
-    "web/**/*.{ts,tsx,js,css}": ["prettier --write"]
+    "server/**/*.{ts,js}": [
+      "prettier --write"
+    ],
+    "web/**/*.{ts,tsx,js,css}": [
+      "prettier --write"
+    ]
   }
 }

@@ -15,7 +15,7 @@ const orderInclude = {
 } satisfies Prisma.OrderInclude;
 
 function generateOrderCode(): string {
-  return `SS-${crypto.randomBytes(3).toString('hex').toUpperCase()}`;
+  return `BS-${crypto.randomBytes(3).toString('hex').toUpperCase()}`;
 }
 
 /**
@@ -148,7 +148,7 @@ export const orderService = {
         userId,
         type: 'ORDER',
         title: `Pedido ${order.code} confirmado 🎉`,
-        body: `Pagamento aprovado. Você ganhou ${earned} pontos Sphere!`,
+        body: `Pagamento aprovado. Você ganhou ${earned} pontos Baruc!`,
         link: `/account/orders/${order.id}`,
       });
 

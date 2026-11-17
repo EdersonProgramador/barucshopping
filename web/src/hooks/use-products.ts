@@ -1,4 +1,4 @@
-﻿import { keepPreviousData, useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { productService, type ProductFilters } from '@/services/product.service';
 
 export function useProducts(filters: ProductFilters = {}) {
@@ -6,6 +6,7 @@ export function useProducts(filters: ProductFilters = {}) {
     queryKey: ['products', filters],
     queryFn: () => productService.list(filters),
     placeholderData: keepPreviousData,
+    staleTime: 2 * 60 * 1000,
   });
 }
 
