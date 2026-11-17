@@ -101,14 +101,14 @@ export function PromoBanner() {
     <section className="relative overflow-hidden bg-zinc-950 text-white">
       <LazyVideo
         src={BG}
-        className="absolute inset-0 h-full w-full object-cover opacity-40"
+        className="absolute inset-0 h-full w-full object-cover object-[center_30%] opacity-30 sm:object-center sm:opacity-40"
       />
       <div
-        className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-black/30"
+        className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/75 to-black/85 sm:bg-gradient-to-r sm:from-black/95 sm:via-black/70 sm:to-black/30"
         aria-hidden
       />
 
-      <div className="container relative grid items-center gap-14 py-24 md:py-32 lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="container relative grid items-center gap-10 py-16 sm:gap-14 sm:py-24 md:py-32 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
           <Reveal>
             <p className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.35em] text-brand-400">

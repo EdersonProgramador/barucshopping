@@ -15,15 +15,9 @@ function canLoadHeroVideo() {
     }
   ).connection;
   if (connection?.saveData) return false;
-  if (
-    connection?.effectiveType === 'slow-2g' ||
-    connection?.effectiveType === '2g' ||
-    connection?.effectiveType === '3g'
-  ) {
+  if (connection?.effectiveType === 'slow-2g' || connection?.effectiveType === '2g') {
     return false;
   }
-  // Skip the heavy clip on narrow viewports — gradient covers mobile LCP
-  if (window.matchMedia('(max-width: 900px)').matches) return false;
   return true;
 }
 
@@ -37,12 +31,14 @@ export function Hero() {
     if (!canLoadHeroVideo()) return;
 
     let cancelled = false;
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
     const start = () => {
       if (!cancelled) setLoadVideo(true);
     };
 
-    const ric = window.requestIdleCallback?.(start, { timeout: 2500 });
-    const fallback = window.setTimeout(start, 2000);
+    // Mobile: start sooner so the clip appears in the first viewport
+    const ric = window.requestIdleCallback?.(start, { timeout: isMobile ? 900 : 2500 });
+    const fallback = window.setTimeout(start, isMobile ? 600 : 2000);
 
     return () => {
       cancelled = true;
@@ -52,7 +48,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative flex h-[92vh] min-h-[560px] items-end overflow-hidden bg-zinc-950 text-white">
+    <section className="relative flex h-[min(92vh,860px)] min-h-[520px] items-end overflow-hidden bg-zinc-950 text-white sm:min-h-[560px]">
       <div className="absolute inset-0">
         <div
           aria-hidden
@@ -65,10 +61,10 @@ export function Hero() {
             muted
             loop
             playsInline
-            preload="none"
+            preload="metadata"
             onCanPlay={() => setVideoReady(true)}
             onError={() => setVideoFailed(true)}
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
+            className={`absolute inset-0 h-full w-full object-cover object-[center_28%] sm:object-center transition-opacity duration-1000 ${
               videoReady ? 'opacity-100' : 'opacity-0'
             }`}
           >
@@ -78,12 +74,12 @@ export function Hero() {
       </div>
 
       <div
-        className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/30"
+        className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/35 sm:from-black/85 sm:via-black/25 sm:to-black/30"
         aria-hidden
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" aria-hidden />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/55 to-transparent sm:from-black/40" aria-hidden />
 
-      <div className="container relative pb-20 md:pb-28">
+      <div className="container relative pb-16 sm:pb-20 md:pb-28">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -93,7 +89,7 @@ export function Hero() {
           Baruc Shopping
         </motion.p>
 
-        <h1 className="max-w-4xl font-heading text-5xl uppercase leading-[0.95] tracking-[0.04em] drop-shadow-[0_2px_24px_rgba(0,0,0,0.55)] sm:text-7xl md:text-8xl">
+        <h1 className="max-w-4xl font-heading text-[2.65rem] uppercase leading-[0.92] tracking-[0.04em] drop-shadow-[0_2px_24px_rgba(0,0,0,0.55)] sm:text-7xl md:text-8xl">
           <SplitReveal
             text="Seu"
             by="chars"
