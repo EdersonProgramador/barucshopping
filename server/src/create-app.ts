@@ -14,9 +14,23 @@ export function createApp() {
 
   // cross-origin so the SPA (:3000) can load images served by the API (:3333)
   app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
+  const allowedOrigins = [
+    env.CLIENT_URL,
+    'https://barucshopping-lqeb.vercel.app',
+    'https://barucshopping.com.br',
+    'https://www.barucshopping.com.br',
+    'http://localhost:3000',
+  ].filter(Boolean);
+
   app.use(
     cors({
-      origin: env.CLIENT_URL,
+      origin(origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+          return;
+        }
+        callback(new Error(`CORS blocked for origin: ${origin}`));
+      },
       credentials: true,
     })
   );
