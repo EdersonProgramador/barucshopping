@@ -1,0 +1,34 @@
+# Baruc Shopping — Render Blueprint (API + Postgres)
+# Dashboard: New → Blueprint → connect EdersonProgramador/barucshopping
+
+databases:
+  - name: baruc-shopping-db
+    plan: free
+    databaseName: barucshopping
+    user: baruc
+
+services:
+  - type: web
+    name: baruc-shopping-api
+    runtime: node
+    plan: free
+    region: oregon
+    rootDir: server
+    buildCommand: npm install && npx prisma generate && npm run build
+    preDeployCommand: npx prisma migrate deploy
+    startCommand: npm start
+    initialDeployHook: npx tsx prisma/seed.ts
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CLIENT_URL
+        value: https://barucshopping-lqeb.vercel.app
+      - key: DATABASE_URL
+        fromDatabase:
+          name: baruc-shopping-db
+          property: connectionString
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true

@@ -1,4 +1,13 @@
 import { api } from '@/lib/api';
+import {
+  demoCategories,
+  demoGetById,
+  demoGetBySlug,
+  demoListProducts,
+  demoPriceHistory,
+  demoRelated,
+  shouldUseDemoCatalog,
+} from '@/lib/demo-store';
 import type { Category, Paginated, Product, RatingBucket, Review } from '@/types';
 
 export interface ProductFilters {
@@ -21,10 +30,24 @@ function toParams(filters: ProductFilters) {
   );
 }
 
+async function withDemoFallback<T>(live: () => Promise<T>, demo: () => T): Promise<T> {
+  if (shouldUseDemoCatalog()) return demo();
+  try {
+    return await live();
+  } catch {
+    return demo();
+  }
+}
+
 export const productService = {
   async list(filters: ProductFilters = {}) {
-    const { data } = await api.get<Paginated<Product>>('/products', { params: toParams(filters) });
-    return data;
+    return withDemoFallback(
+      async () => {
+        const { data } = await api.get<Paginated<Product>>('/products', { params: toParams(filters) });
+        return data;
+      },
+      () => demoListProducts(filters)
+    );
   },
 
   async listAdmin(filters: ProductFilters = {}) {
@@ -35,28 +58,48 @@ export const productService = {
   },
 
   async getBySlug(slug: string) {
-    const { data } = await api.get<Product>(`/products/slug/${slug}`);
-    return data;
+    return withDemoFallback(
+      async () => {
+        const { data } = await api.get<Product>(`/products/slug/${slug}`);
+        return data;
+      },
+      () => demoGetBySlug(slug)
+    );
   },
 
   async getById(id: string) {
-    const { data } = await api.get<Product>(`/products/${id}`);
-    return data;
+    return withDemoFallback(
+      async () => {
+        const { data } = await api.get<Product>(`/products/${id}`);
+        return data;
+      },
+      () => demoGetById(id)
+    );
   },
 
   async related(slug: string) {
-    const { data } = await api.get<Product[]>(`/products/slug/${slug}/related`);
-    return data;
+    return withDemoFallback(
+      async () => {
+        const { data } = await api.get<Product[]>(`/products/slug/${slug}/related`);
+        return data;
+      },
+      () => demoRelated(slug)
+    );
   },
 
   async priceHistory(id: string, days: 30 | 90 | 365) {
-    const { data } = await api.get<{
-      data: { date: string; price: number }[];
-      current: number;
-      lowest90: number;
-      isLowest: boolean;
-    }>(`/products/${id}/price-history`, { params: { days } });
-    return data;
+    return withDemoFallback(
+      async () => {
+        const { data } = await api.get<{
+          data: { date: string; price: number }[];
+          current: number;
+          lowest90: number;
+          isLowest: boolean;
+        }>(`/products/${id}/price-history`, { params: { days } });
+        return data;
+      },
+      () => demoPriceHistory(id, days)
+    );
   },
 
   async reviews(productId: string, page = 1, sort: 'recent' | 'helpful' | 'rating' = 'recent') {
@@ -100,8 +143,13 @@ export const productService = {
   },
 
   async categories() {
-    const { data } = await api.get<Category[]>('/categories');
-    return data;
+    return withDemoFallback(
+      async () => {
+        const { data } = await api.get<Category[]>('/categories');
+        return data;
+      },
+      () => demoCategories()
+    );
   },
 };
 

@@ -1,7 +1,5 @@
-// Baruc Shopping — database schema
+// Baruc Shopping — database schema (PostgreSQL for production / Render)
 // Prices are stored in cents (Int) to avoid floating point issues.
-// SQLite keeps the project zero-config; swap the datasource for PostgreSQL in
-// production (enums/String[] variants are noted in the README).
 // Enum-like fields are validated with Zod at the API boundary:
 //   User.role        → CUSTOMER | ADMIN
 //   Order.status     → PENDING | PAID | PROCESSING | SHIPPED | DELIVERED | CANCELLED
@@ -14,7 +12,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -29,7 +27,7 @@ model User {
   resetToken          String?
   resetTokenExpiresAt DateTime?
   loyaltyPoints       Int       @default(0)
-  wishlistToken       String?   @unique // public share link token
+  wishlistToken       String?   @unique
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
 
@@ -44,13 +42,12 @@ model User {
   @@map("users")
 }
 
-// Loyalty points ledger — one row per earn/spend event, sums to User.loyaltyPoints
 model PointsEntry {
   id        String   @id @default(cuid())
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  amount    Int // positive = earned, negative = spent
-  reason    String // ORDER | REVIEW | SIGNUP | REDEEM
+  amount    Int
+  reason    String
   createdAt DateTime @default(now())
 
   @@index([userId])
@@ -61,7 +58,7 @@ model Notification {
   id        String   @id @default(cuid())
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  type      String // ORDER | POINTS | STOCK | SYSTEM
+  type      String
   title     String
   body      String
   link      String?
@@ -72,14 +69,13 @@ model Notification {
   @@map("notifications")
 }
 
-// "Notify me when back in stock" subscriptions
 model StockAlert {
-  id        String    @id @default(cuid())
-  email     String
-  productId String
-  product   Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  id         String    @id @default(cuid())
+  email      String
+  productId  String
+  product    Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
   notifiedAt DateTime?
-  createdAt DateTime  @default(now())
+  createdAt  DateTime  @default(now())
 
   @@unique([email, productId])
   @@index([productId])
@@ -106,16 +102,16 @@ model Product {
   title       String
   slug        String   @unique
   description String
-  price       Int // cents
-  discount    Int      @default(0) // percentage 0-90
-  images      Json // string[]
+  price       Int
+  discount    Int      @default(0)
+  images      String[]
   categoryId  String
   category    Category @relation(fields: [categoryId], references: [id])
   stock       Int      @default(0)
   rating      Float    @default(0)
   reviewCount Int      @default(0)
   sold        Int      @default(0)
-  tags        Json // string[]
+  tags        String[]
   isFeatured  Boolean  @default(false)
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
@@ -164,11 +160,11 @@ model Review {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   productId    String
   product      Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  rating       Int // 1-5
+  rating       Int
   title        String?
   comment      String
-  images       Json     @default("[]") // string[] of photo URLs
-  verified     Boolean  @default(false) // author has a delivered order with this product
+  images       String[] @default([])
+  verified     Boolean  @default(false)
   helpfulCount Int      @default(0)
   createdAt    DateTime @default(now())
 
@@ -179,9 +175,9 @@ model Review {
 model Coupon {
   id          String    @id @default(cuid())
   code        String    @unique
-  type        String // PERCENTAGE | FIXED
-  value       Int // percentage or cents, depending on type
-  minSubtotal Int? // cents
+  type        String
+  value       Int
+  minSubtotal Int?
   maxUses     Int?
   usedCount   Int       @default(0)
   expiresAt   DateTime?
@@ -211,17 +207,17 @@ model Address {
 
 model Order {
   id              String      @id @default(cuid())
-  code            String      @unique // human-friendly, e.g. BS-1A2B3C
+  code            String      @unique
   userId          String
   user            User        @relation(fields: [userId], references: [id])
   status          String      @default("PENDING")
-  subtotal        Int // cents
-  discount        Int         @default(0) // cents
-  shippingCost    Int         @default(0) // cents
-  total           Int // cents
+  subtotal        Int
+  discount        Int         @default(0)
+  shippingCost    Int         @default(0)
+  total           Int
   couponCode      String?
   shippingMethod  String
-  shippingAddress Json // snapshot of the address at purchase time
+  shippingAddress Json
   items           OrderItem[]
   payment         Payment?
   createdAt       DateTime    @default(now())
@@ -237,9 +233,9 @@ model OrderItem {
   order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
   productId String?
   product   Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
-  title     String // snapshot
-  image     String // snapshot
-  price     Int // cents at purchase time
+  title     String
+  image     String
+  price     Int
   quantity  Int
 
   @@map("order_items")
@@ -249,9 +245,9 @@ model Payment {
   id            String    @id @default(cuid())
   orderId       String    @unique
   order         Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  method        String // CREDIT_CARD | PIX | BOLETO
+  method        String
   status        String    @default("PENDING")
-  amount        Int // cents
+  amount        Int
   cardLast4     String?
   transactionId String    @unique
   paidAt        DateTime?

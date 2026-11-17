@@ -163,6 +163,12 @@ const reviewPool = [
 async function main() {
   console.log('🌱 Seeding database...');
 
+  const existing = await prisma.product.count();
+  if (existing > 0) {
+    console.log(`⏭️  Skip seed — ${existing} products already present.`);
+    return;
+  }
+
   await prisma.$transaction([
     prisma.payment.deleteMany(),
     prisma.orderItem.deleteMany(),
