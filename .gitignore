@@ -27,3 +27,12 @@ npm-debug.log*
 Thumbs.db
 coverage/
 .turbo/
+.vercel
+.env*
+
+.env.neon
+.vercel
+
+.env.neon
+.api-env.json
+.vercel
